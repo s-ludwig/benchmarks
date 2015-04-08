@@ -18,6 +18,12 @@ echo D Gdc
 ../xtime.rb ./json_d_gdc
 echo D Ldc
 ../xtime.rb ./json_d_ldc
+echo D new - debug
+../xtime.rb ./json_d_new
+echo D new Gdc - debug
+../xtime.rb ./json_d_new_gdc
+echo D new Ldc
+../xtime.rb ./json_d_new_ldc
 echo Nim
 ../xtime.rb ./json_nim
 echo Python Pypy
