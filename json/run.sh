@@ -24,6 +24,12 @@ echo D new Gdc - debug
 ../xtime.rb ./json_d_new_gdc
 echo D new Ldc
 ../xtime.rb ./json_d_new_ldc
+echo D new lazy - debug
+../xtime.rb ./json_d_new_lazy
+echo D new lazy Gdc - debug
+../xtime.rb ./json_d_new_lazy_gdc
+echo D new lazy Ldc
+../xtime.rb ./json_d_new_lazy_ldc
 echo Nim
 ../xtime.rb ./json_nim
 echo Python Pypy

@@ -19,11 +19,18 @@ gdc -o json_d_gdc -O3 -frelease -finline test.d
 ldc2 -ofjson_d_ldc -O5 -release -inline test.d
 
 #std_data_json
+#dmd -ofjson_d_new -O -release -inline -w -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
 dmd -ofjson_d_new -debug -g -w -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
-
+#gdc -o json_d_new_gdc -frelease -finline-functions -O3 -Werror -Wall -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
 gdc -o json_d_new_gdc -fdebug -g -Werror -Wall -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
-
 ldc2 -ofjson_d_new_ldc -O5 -release -enable-inlining -w -oq -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
+
+#std_data_json streamed
+#dmd -ofjson_d_new_lazy -O -release -inline -w -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new_lazy.d
+dmd -ofjson_d_new_lazy -debug -g -w -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new_lazy.d
+#gdc -o json_d_new_lazy_gdc -frelease -finline-functions -O3 -Werror -Wall -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new.d
+gdc -o json_d_new_lazy_gdc -fdebug -g -Werror -Wall -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new_lazy.d
+ldc2 -ofjson_d_new_lazy_ldc -O5 -release -enable-inlining -w -oq -Istd_data_json/source/ std_data_json/source/stdx/data/json/foundation.d std_data_json/source/stdx/data/json/generator.d std_data_json/source/stdx/data/json/lexer.d std_data_json/source/stdx/data/json/package.d std_data_json/source/stdx/data/json/parser.d std_data_json/source/stdx/data/json/value.d test_new_lazy.d
 
 nim c -o:json_nim -d:release --cc:clang --verbosity:0 test.nim
 scalac -optimize test.scala
