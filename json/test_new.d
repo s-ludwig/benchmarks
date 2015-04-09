@@ -1,11 +1,13 @@
 import std.stdio;
 import std.file;
-import std.conv;
+import core.memory;
 
 import stdx.data.json;
 
 int main(string[] args) {
-  string text = readText("./1.json");
+  GC.disable(); // GC uses up a lot of time without collecting anything
+
+  string text = cast(string)read("./1.json"); // don't UTF-validate to match RapidJSON
   auto jval = parseJSONValue(text);
   assert(!text.length);
   auto coordinates = jval.get!(JSONValue[string])["coordinates"].get!(JSONValue[]);
