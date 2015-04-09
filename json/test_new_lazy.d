@@ -1,33 +1,30 @@
-import std.stdio;
+import std.exception;
 import std.file;
-import std.algorithm;
+import std.stdio;
 
 import stdx.data.json;
 
 int main(string[] args) {
-  string text = readText("./1.json");
-  auto nodes = parseJSONStream(text);
+  string text = cast(string)read("./1.json"); // don't UTF-validate to match RapidJSON
+  auto nodes = parseJSONStream!(LexOptions.noThrow|LexOptions.noTrackLocation)(text);
   double x = 0;
   double y = 0;
   double z = 0;
   size_t len = 0;
-  int state = 0;
+  
+  enforce(nodes.skipToKey("coordinates"));
 
-  foreach (nd; nodes) {
-    if(nd.kind == JSONParserNode.Kind.key && nd.key == "x")
-    {
-      state = 0;
-      ++len;
-    }
-    else if(nd.kind == JSONParserNode.Kind.literal && state < 3)
-    {
-      double val = nd.literal.number.doubleValue;
-      if(state == 0) x += val;
-      else if(state == 1) y += val;
-      else z += val;
-      ++state;
-    }
-  }
+  nodes.readArray({
+    len++;
+    nodes.readObject((key) {
+      switch (key) {
+        default: nodes.skipValue(); break;
+        case "x": x += nodes.readDouble(); break;
+        case "y": y += nodes.readDouble(); break;
+        case "z": z += nodes.readDouble(); break;
+      }
+    });
+  });
 
   printf("%.8f\n%.8f\n%.8f\n", x / len, y / len, z / len);
   return 0;
